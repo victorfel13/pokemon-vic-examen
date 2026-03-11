@@ -1,0 +1,27 @@
+
+.pokemonCard {
+  width: 200px; 
+  border: 1px solid rgb(105, 105, 105);
+  border-radius: 0; 
+  background: #fff;
+  text-align: center;
+  margin: 0; 
+  padding: 0; 
+}
+
+
+.pokemonCard__image {
+  width: 100%; 
+  height: 200px;
+  object-fit: contain;
+  display: block; 
+  margin: 0; 
+}
+
+
+.pokemonCard__name,
+.pokemonCard__type {
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 4px 0; /*espacio interno */
+}
