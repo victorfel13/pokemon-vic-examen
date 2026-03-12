@@ -4,6 +4,7 @@ function SearchBar({ search, setSearch }) {
   return (
     <div className="SearchBar">
       <input
+      className="SearchBar__input"
         type="search"
         placeholder="Buscar Pokémon"
         value={search}

@@ -21,3 +21,16 @@
     margin: 0;            /* eliminamos margen para centrar bien */
     padding: 10px;        /* espacio interno */
 }
+
+
+/* Media query: móviles */
+@media (max-width: 480px) {
+  .footer__autor {
+    font-size: 12px; 
+  }
+
+  .footer__container {
+    min-height: 40px; 
+    padding: 5px;
+  }
+}

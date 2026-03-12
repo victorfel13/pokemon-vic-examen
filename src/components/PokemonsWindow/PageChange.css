@@ -44,3 +44,25 @@
    height: 40px;
    
 }
+
+
+/* Media queries: móviles */
+@media (max-width: 480px) {
+  .paige-button__container {
+    width: 60px;
+    height: 30px;
+    margin: auto;
+    margin-left: -300px;
+  }
+
+  .pageChange__link {
+    font-size: 10px;
+    height: 30px;
+    padding: 5px;
+    margin: auto;
+  }
+
+  .pageChange__list {
+    gap: 250px;
+  }
+}

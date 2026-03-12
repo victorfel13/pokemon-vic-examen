@@ -10,19 +10,37 @@ function App() {
   const [pokemondata, setPokemondata] = useState([]);
   const [search, setSearch] = useState(""); // buscador
   const [nowPage, setNowPage] = useState(0);
-  const itemsPerPage = 6;
+  const [itemsPerPage, setItemsPerPage] = useState(6); 
 
-  // Filtrar Pokémon según search
-  const filteredPokemons = pokemondata.filter(pokemon =>
-    pokemon.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // Ajustar itemsPerPage según tamaño de pantalla
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 480) {
+        setItemsPerPage(1); 
+      } else {
+        setItemsPerPage(6); 
+      }
+    };
 
+    handleResize(); // ejecutar al cargar
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Filtrar 
+  const filteredPokemons = pokemondata
+  .filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()))
+  .map(pokemon => ({
+    ...pokemon,
+    name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+  }));
   // Resetear página al cambiar la búsqueda
   useEffect(() => {
     setNowPage(0);
   }, [search]);
 
-  // Fetch Pokémon
+  // Fetch 
   const LINK_BASE = "https://pokeapi.co/api/v2/pokemon/";
 
   const fetchPokemons = async (id) => {
@@ -65,7 +83,7 @@ function App() {
       <PageChange
         nowPage={nowPage}
         setNowPage={setNowPage}
-        totalItems={filteredPokemons.length} // importante usar filteredPokemons
+        totalItems={filteredPokemons.length} 
         itemsPerPage={itemsPerPage}
       />
 

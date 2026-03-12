@@ -56,3 +56,55 @@ margin-left: 380px;
   font-style: normal;
   margin-top: -10px;
 }
+
+
+/* móviles */
+@media (max-width: 480px) {
+  .PokemonWindow__container {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px;
+    max-width: 90%; 
+    margin: auto;
+    margin-top: -30px;
+  }
+
+  .pokemonCard {
+    width: 100%; 
+    max-width: 300px; 
+    margin: auto; 
+    height: 350px;
+  }
+
+  .pokemonCard__image {
+  width: 110%; 
+  height: 300px;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+}
+
+.pokemonCard__name {
+  margin: -50px  0 0; 
+  margin-bottom: 10px;
+  padding: 0;
+  font-size: 25px;
+  font-weight: 600;
+   font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pokemonCard__type {
+  margin: 2px 0 10px 0; 
+  padding: 2px 6px;
+  font-size: 15px;
+ 
+  border-radius: 1px;
+   font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: -10px;
+}
+
+}
