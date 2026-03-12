@@ -1,8 +1,8 @@
 /* Contenedor grid */
 .PokemonWindow__container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 tarjetas por fila */
-  gap: 20px; /* sin espacio entre tarjetas */
-  max-width: 600px; /* ajusta según 3 tarjetas de 200px cada una */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+  max-width: 600px; 
   margin: 0 auto;
 }

@@ -1,11 +1,13 @@
+
 import "./SearchBar.css";
-function SearchBar() {
+function SearchBar({ search, setSearch }) {
   return (
     <div className="SearchBar">
       <input
-        className="SearchBar__input"
         type="search"
         placeholder="Buscar Pokémon"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
     </div>
   );

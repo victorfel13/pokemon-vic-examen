@@ -1,6 +1,8 @@
 .Header__container{
   margin-left: 20px;
   margin-top: 30px;
+  display: flex;
+  gap: 10px;
 }
 .Header__title{
   font-family: "Archivo Black", sans-serif;
@@ -8,4 +10,10 @@
   font-style: normal;
   font-size: 30px;
   color: rgb(100, 100, 100);
+  margin-top: ;
+}
+
+.header__logo{
+  width: 40px;
+  height: 40px;
 }
