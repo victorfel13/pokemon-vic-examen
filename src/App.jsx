@@ -7,18 +7,18 @@ import FooterPage from "./components/Footer";
 
 function App() {
   // Estados
-  const [pokemondata, setPokemondata] = useState([]);
+  const [pokemondata, setPokemondata] = useState([]); //data
   const [search, setSearch] = useState(""); // buscador
-  const [nowPage, setNowPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(6); 
+  const [nowPage, setNowPage] = useState(0); // página next
+  const [itemsPerPage, setItemsPerPage] = useState(6);// cuantos muestra por página
 
-  // Ajustar itemsPerPage según tamaño de pantalla
+  // Ajustar cartas según tamaño de pantalla
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 480) {
-        setItemsPerPage(1); 
+        setItemsPerPage(1);
       } else {
-        setItemsPerPage(6); 
+        setItemsPerPage(6);
       }
     };
 
@@ -28,33 +28,41 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Filtrar 
+  // Filtrado de datos pokemon
   const filteredPokemons = pokemondata
-  .filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()))
-  .map(pokemon => ({
-    ...pokemon,
-    name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
-  }));
+    .filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(search.toLowerCase()),
+    )
+   
+    .map((pokemon) => ({
+      ...pokemon,
+      name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
+    }));
+
+  
+
+  console.log(filteredPokemons);
+
   // Resetear página al cambiar la búsqueda
   useEffect(() => {
     setNowPage(0);
   }, [search]);
 
-  // Fetch 
+  // Fetch (traer datos de la api)
   const LINK_BASE = "https://pokeapi.co/api/v2/pokemon/";
 
   const fetchPokemons = async (id) => {
     try {
       const response = await fetch(`${LINK_BASE}${id}`);
       const data = await response.json();
-      setPokemondata(prev => [...prev, data]);
+      setPokemondata((prev) => [...prev, data]);
     } catch (error) {
       console.error("Error con fetch", error);
     }
   };
 
   const fetchAllPokemons = () => {
-    for (let i = 1; i <= 19; i++) {
+    for (let i = 1; i <= 2000; i++) {
       fetchPokemons(i);
     }
   };
@@ -62,19 +70,22 @@ function App() {
   useEffect(() => {
     fetchAllPokemons();
   }, []);
-
+ 
   return (
     <>
       <Header />
-      <SearchBar search={search} setSearch={setSearch} />
+      <SearchBar search={search} setSearch={setSearch} /> 
 
       <div className="PokemonWindow__container">
         {filteredPokemons.length === 0 ? (
           <h1>Cargando...</h1>
         ) : (
           filteredPokemons
-            .slice(nowPage * itemsPerPage, nowPage * itemsPerPage + itemsPerPage)
-            .map(pokemon => (
+            .slice(
+              nowPage * itemsPerPage,
+              nowPage * itemsPerPage + itemsPerPage,
+            )
+            .map((pokemon) => (
               <PokemonCard key={pokemon.id} pokemonData={pokemon} />
             ))
         )}
@@ -83,7 +94,7 @@ function App() {
       <PageChange
         nowPage={nowPage}
         setNowPage={setNowPage}
-        totalItems={filteredPokemons.length} 
+        totalItems={filteredPokemons.length}
         itemsPerPage={itemsPerPage}
       />
 
